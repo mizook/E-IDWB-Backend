@@ -4,14 +4,14 @@ const { body, validationResult } = require('express-validator');
 
 const router = require('express').Router();
 
-// Ruta para obtener reservas filtradas por mes y año
+// Ruta para obtener reservas filtradas por año
 router.get('/reservas', async (req, res) => {
   try {
-    const { mes, ano } = req.query;
+    const { ano } = req.query;
 
-    // Convierte el mes y año de la solicitud a un rango de fechas
-    const fechaInicio = new Date(ano, mes - 1, 1); // El mes se resta en 1 ya que los meses en JavaScript son 0-indexados
-    const fechaFin = new Date(ano, mes, 0);
+    // Convierte el año de la solicitud a un rango de fechas
+    const fechaInicio = new Date(ano, 0, 1); // El mes se establece en 0 para enero
+    const fechaFin = new Date(ano, 11, 31); // El mes se establece en 11 para diciembre
 
     // Consulta las reservas dentro del rango de fechas
     const reservasFiltradas = await Reserva.findAll({
@@ -28,6 +28,7 @@ router.get('/reservas', async (req, res) => {
     res.status(500).json({ error: 'Error al obtener las reservas filtradas.' });
   }
 });
+
 
 // Ruta para crear una nueva reserva
 router.post('/reservas',
