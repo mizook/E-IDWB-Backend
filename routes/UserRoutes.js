@@ -64,7 +64,7 @@ async (req, res) => {
         return res.status(404).json({ error: 'Usuario no encontrado.' });
       }
   
-      updatedUser.name = req.body.name;
+      updatedUser.nombre = req.body.nombre;
       await updatedUser.save();
   
       res.json(updatedUser);
