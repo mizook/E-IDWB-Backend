@@ -12,3 +12,5 @@
 
 ## Correr la API
     npm run dev
+
+## Cabe recalcar que la BD ya está hecha y los datos semilla ya aplicados.
