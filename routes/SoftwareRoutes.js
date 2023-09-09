@@ -1,4 +1,4 @@
-const { Software } = require('../models');
+const { Programa } = require('../models');
 const { body, validationResult } = require('express-validator');
 
 const router = require('express').Router();
@@ -6,7 +6,7 @@ const router = require('express').Router();
 // Ruta para obtener todos los softwares
 router.get('/softwares', async (req, res) => {
   try {
-    const softwares = await Software.findAll();
+    const softwares = await Programa.findAll();
     res.json(softwares);
   } catch (error) {
     console.error(error);
@@ -28,7 +28,7 @@ router.post('/softwares', [
   }
 
   try {
-    const newSoftware = await Software.create({
+    const newSoftware = await Programa.create({
       nombre: req.body.nombre,
     });
 
@@ -54,7 +54,7 @@ router.put('/softwares/:id', [
 
   try {
     const softwareId = req.params.id;
-    const updatedSoftware = await Software.findByPk(softwareId);
+    const updatedSoftware = await Programa.findByPk(softwareId);
 
     if (!updatedSoftware) {
       return res.status(404).json({ error: 'Software no encontrado.' });
@@ -74,7 +74,7 @@ router.put('/softwares/:id', [
 router.delete('/softwares/:id', async (req, res) => {
   try {
     const softwareId = req.params.id;
-    const softwareToDelete = await Software.findByPk(softwareId);
+    const softwareToDelete = await Programa.findByPk(softwareId);
 
     if (!softwareToDelete) {
       return res.status(404).json({ error: 'Software no encontrado.' });

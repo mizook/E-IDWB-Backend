@@ -76,21 +76,21 @@ async (req, res) => {
   
 
 router.delete('/usuarios/:id', async (req, res) => {
-try {
-    const userId = req.params.id;
-    const userToDelete = await Usuario.findByPk(userId);
+  try {
+      const { id } = req.params;
+      const userToDelete = await Usuario.findByPk(id);
 
-    if (!userToDelete) {
-    return res.status(404).json({ error: 'Usuario no encontrado.' });
-    }
+      if (!userToDelete) {
+      return res.status(404).json({ error: 'Usuario no encontrado.' });
+      }
 
-    await userToDelete.destroy();
-    res.json({ message: 'User eliminado exitosamente.' });
-} catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error eliminando el usuario.' });
-}
-});
+      await userToDelete.destroy();
+      res.json({ message: 'Usuario eliminado exitosamente.' });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error eliminando el usuario.' });
+  }
+  });
   
 
 module.exports = router;

@@ -8,7 +8,7 @@ module.exports = {
       // Agrega más usuarios según sea necesario
     ]);
 
-    await queryInterface.bulkInsert('Software', [
+    await queryInterface.bulkInsert('Programas', [
       { nombre: 'Software A', createdAt: new Date(), updatedAt: new Date() },
       { nombre: 'Software B', createdAt: new Date(), updatedAt: new Date() },
       // Agrega más software según sea necesario
@@ -17,7 +17,7 @@ module.exports = {
     await queryInterface.bulkInsert('Reservas', [
       {
         usuarioId: 1,
-        softwareId: 1,
+        programaId: 1,
         fechaReserva: new Date('2023-01-15'),
         fechaVencimiento: new Date('2023-02-15'),
         createdAt: new Date(),
@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         usuarioId: 2,
-        softwareId: 2,
+        programaId: 2,
         fechaReserva: new Date('2022-08-15'),
         fechaVencimiento: new Date('2023-01-15'),
         createdAt: new Date(),
@@ -33,7 +33,7 @@ module.exports = {
       },
       {
         usuarioId: 2,
-        softwareId: 1,
+        programaId: 1,
         fechaReserva: new Date('2022-07-01'),
         fechaVencimiento: new Date('2022-08-01'),
         createdAt: new Date(),
@@ -45,6 +45,6 @@ module.exports = {
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('Reservas', null, {});
     await queryInterface.bulkDelete('Usuarios', null, {});
-    await queryInterface.bulkDelete('Software', null, {});
+    await queryInterface.bulkDelete('Programas', null, {});
   },
 };

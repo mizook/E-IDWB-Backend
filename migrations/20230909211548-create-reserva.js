@@ -19,22 +19,20 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      softwareId: {
+      programaId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Softwares',
+          model: 'Programas',
           key: 'id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       fechaReserva: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       fechaVencimiento: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       createdAt: {
