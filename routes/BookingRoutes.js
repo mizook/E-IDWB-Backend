@@ -1,16 +1,31 @@
 const { Reserva } = require('../models');
+const { Op } = require('sequelize');
 const { body, validationResult } = require('express-validator');
 
 const router = require('express').Router();
 
-// Ruta para obtener todas las reservas
+// Ruta para obtener reservas filtradas por mes y año
 router.get('/reservas', async (req, res) => {
   try {
-    const reservas = await Reserva.findAll();
-    res.json(reservas);
+    const { mes, ano } = req.query;
+
+    // Convierte el mes y año de la solicitud a un rango de fechas
+    const fechaInicio = new Date(ano, mes - 1, 1); // El mes se resta en 1 ya que los meses en JavaScript son 0-indexados
+    const fechaFin = new Date(ano, mes, 0);
+
+    // Consulta las reservas dentro del rango de fechas
+    const reservasFiltradas = await Reserva.findAll({
+      where: {
+        fechaReserva: {
+          [Op.between]: [fechaInicio, fechaFin],
+        },
+      },
+    });
+
+    res.json(reservasFiltradas);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al obtener las reservas.' });
+    res.status(500).json({ error: 'Error al obtener las reservas filtradas.' });
   }
 });
 

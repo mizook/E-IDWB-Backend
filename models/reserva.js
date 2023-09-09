@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Reserva.init({
     usuarioId: DataTypes.INTEGER,
-    softwareId: DataTypes.INTEGER,
+    programaId: DataTypes.INTEGER,
     fechaReserva: DataTypes.DATE,
     fechaVencimiento: DataTypes.DATE
   }, {
