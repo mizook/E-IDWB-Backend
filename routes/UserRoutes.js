@@ -19,9 +19,9 @@ router.post('/usuarios',
 [
     body('nombre')
     .isString()
-    .withMessage('El título debe ser una cadena de texto')
+    .withMessage('El nombre debe ser una cadena de texto')
     .isLength({ min: 1, max: 255 })
-    .withMessage('El título debe tener entre 1 y 255 caracteres'),
+    .withMessage('El nombre debe tener entre 1 y 255 caracteres'),
 ],
 async (req, res) => {
     const errors = validationResult(req);
@@ -44,11 +44,11 @@ async (req, res) => {
 
 router.put('/usuarios/:id',
 [
-    body('name')
+    body('nombre')
     .isString()
-    .withMessage('El título debe ser una cadena de texto')
+    .withMessage('El nombre debe ser una cadena de texto')
     .isLength({ min: 1, max: 255 })
-    .withMessage('El título debe tener entre 1 y 255 caracteres'),
+    .withMessage('El nombre debe tener entre 1 y 255 caracteres'),
 ],
 async (req, res) => {
     const errors = validationResult(req);
