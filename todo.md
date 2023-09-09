@@ -88,3 +88,4 @@ Modificar modelo y migraciones (agregar relaciones)
 ## Migración
 sequelize db:migrate
 npx sequelize-cli db:migrate:undo:all
+npx sequelize-cli db:seed:all
